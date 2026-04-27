@@ -17,7 +17,7 @@ export default function IACortexTechLanding() {
     e.preventDefault();
     const subject = encodeURIComponent('Contato via iacortextech.com.br');
     const body = encodeURIComponent(`Nome: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
-    window.location.href = `mailto:contato@iacortextech.com.br?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:api@iacortextech.com.br?subject=${subject}&body=${body}`;
     setSent(true);
   };
 
@@ -178,10 +178,11 @@ export default function IACortexTechLanding() {
               <h3 className="text-xl font-bold mb-2" style={{ color: '#f1f5f9' }}>Cortex Growth</h3>
               <p className="text-sm leading-relaxed mb-6" style={{ color: '#94a3b8' }}>
                 Dashboard inteligente que centraliza Meta Ads, Google Ads e Kommo CRM.
-                4 agentes de IA analisam seus dados e geram insights acionáveis em tempo real.
+                Utiliza a Google Ads API para leitura de métricas de campanhas (impressões, cliques, custo e conversões)
+                e gera relatórios automáticos com 4 agentes de IA para PMEs brasileiras.
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
-                {['Meta Ads', 'Google Ads', 'Kommo CRM', 'AI Insights', 'UTM'].map((tag) => (
+                {['Meta Ads', 'Google Ads API', 'Kommo CRM', 'AI Insights', 'ROAS'].map((tag) => (
                   <span key={tag} className="px-2 py-1 rounded-md text-xs"
                     style={{ background: 'rgba(59,130,246,0.1)', color: '#93c5fd', border: '1px solid rgba(59,130,246,0.2)' }}>
                     {tag}
@@ -214,10 +215,10 @@ export default function IACortexTechLanding() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-2" style={{ color: '#475569' }}>Novo produto</h3>
+              <h3 className="text-xl font-bold mb-2" style={{ color: '#475569' }}>Cortex Automations</h3>
               <p className="text-sm leading-relaxed mb-6" style={{ color: '#475569' }}>
-                Estamos desenvolvendo novas soluções de IA para automação de marketing e vendas.
-                Fique atento às novidades.
+                Plataforma de automação de marketing com IA generativa: criação de copies, briefings
+                de campanhas e inteligência competitiva para agências e times de marketing.
               </p>
               <a href="#contato"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all"
@@ -302,8 +303,8 @@ export default function IACortexTechLanding() {
               </button>
               <p className="text-xs text-center" style={{ color: '#475569' }}>
                 Ou e-mail direto:{' '}
-                <a href="mailto:contato@iacortextech.com.br" className="underline" style={{ color: '#3b82f6' }}>
-                  contato@iacortextech.com.br
+                <a href="mailto:api@iacortextech.com.br" className="underline" style={{ color: '#3b82f6' }}>
+                  api@iacortextech.com.br
                 </a>
               </p>
             </form>
@@ -325,10 +326,10 @@ export default function IACortexTechLanding() {
           <p className="text-xs" style={{ color: '#475569' }}>
             © {new Date().getFullYear()} IA Cortex Tech. Todos os direitos reservados.
           </p>
-          <a href="mailto:contato@iacortextech.com.br" className="text-xs transition-colors" style={{ color: '#475569' }}
+          <a href="mailto:api@iacortextech.com.br" className="text-xs transition-colors" style={{ color: '#475569' }}
             onMouseEnter={e => (e.currentTarget.style.color = '#94a3b8')}
             onMouseLeave={e => (e.currentTarget.style.color = '#475569')}>
-            contato@iacortextech.com.br
+            api@iacortextech.com.br
           </a>
         </div>
       </footer>
