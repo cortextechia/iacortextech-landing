@@ -6,6 +6,8 @@ export default function IACortexTechLanding() {
   const [scrolled, setScrolled] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -13,12 +15,23 @@ export default function IACortexTechLanding() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const subject = encodeURIComponent('Contato via iacortextech.com.br');
-    const body = encodeURIComponent(`Nome: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
-    window.location.href = `mailto:api@iacortextech.com.br?subject=${subject}&body=${body}`;
-    setSent(true);
+    setSending(true);
+    setError('');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error('Falha no envio.');
+      setSent(true);
+    } catch {
+      setError('Erro ao enviar. Tente novamente ou envie diretamente para api@iacortextech.com.br.');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -248,8 +261,8 @@ export default function IACortexTechLanding() {
           {sent ? (
             <div className="text-center p-8 rounded-2xl" style={{ background: 'rgba(74,222,128,0.08)', border: '1px solid rgba(74,222,128,0.2)' }}>
               <div className="text-4xl mb-4">✅</div>
-              <h3 className="text-lg font-semibold mb-2" style={{ color: '#f1f5f9' }}>Mensagem preparada!</h3>
-              <p className="text-sm" style={{ color: '#94a3b8' }}>Seu cliente de e-mail foi aberto. Envie a mensagem para entrar em contato.</p>
+              <h3 className="text-lg font-semibold mb-2" style={{ color: '#f1f5f9' }}>Mensagem enviada!</h3>
+              <p className="text-sm" style={{ color: '#94a3b8' }}>Recebemos seu contato e retornaremos em breve.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -294,13 +307,16 @@ export default function IACortexTechLanding() {
                   onBlur={e => (e.currentTarget.style.border = '1px solid rgba(255,255,255,0.08)')}
                 />
               </div>
-              <button type="submit"
-                className="w-full py-4 rounded-xl text-sm font-semibold text-white transition-all"
+              <button type="submit" disabled={sending}
+                className="w-full py-4 rounded-xl text-sm font-semibold text-white transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                 style={{ background: '#3b82f6' }}
-                onMouseEnter={e => (e.currentTarget.style.background = '#2563eb')}
+                onMouseEnter={e => { if (!sending) e.currentTarget.style.background = '#2563eb'; }}
                 onMouseLeave={e => (e.currentTarget.style.background = '#3b82f6')}>
-                Enviar mensagem
+                {sending ? 'Enviando…' : 'Enviar mensagem'}
               </button>
+              {error && (
+                <p className="text-xs text-center" style={{ color: '#f87171' }}>{error}</p>
+              )}
               <p className="text-xs text-center" style={{ color: '#475569' }}>
                 Ou e-mail direto:{' '}
                 <a href="mailto:api@iacortextech.com.br" className="underline" style={{ color: '#3b82f6' }}>
