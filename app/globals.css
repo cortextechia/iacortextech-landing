@@ -1,21 +1,87 @@
 @import "tailwindcss";
 
+/* Sistema da Cortex Tech.
+ *
+ * Duas marcas de produto convivem na mesma página e vêm de mundos opostos:
+ * Growth é tela e número (azul), Steel é chão de fábrica e desenho técnico
+ * (âmbar). O fundo e as linhas são neutros de propósito — quem carrega
+ * identidade são os produtos, não o cenário. */
 :root {
-  --bg-base:        #080d19;
-  --bg-surface:     #0f1629;
-  --accent:         #3b82f6;
-  --text-primary:   #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-muted:     #475569;
+  --bg-base:        #05080f;
+  --bg-surface:     #0a1120;
+  --bg-sunken:      #03060c;
+
+  --line:           #172033;
+  --line-bright:    #243350;
+
+  --growth:         #3b82f6;
+  --steel:          #f59e0b;
+
+  --text-primary:   #e6edf9;
+  --text-secondary: #8595ae;
+  --text-muted:     #4a5a75;
 }
 
 body {
-  background: linear-gradient(135deg, #080d19 0%, #0a1628 50%, #0d1f3c 100%);
-  background-attachment: fixed;
+  background: var(--bg-base);
   color: var(--text-primary);
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grade de prancha. Aparece só onde o assunto é técnico — fundo do herói e
+ * interior dos cards de produto — e nunca compete com o texto. */
+.blueprint {
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Cotas e rótulos de dado usam mono: é o vernáculo que o desenho de armadura
+ * e o painel de métricas têm em comum. */
+.mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Único momento coreografado da página: os dois desenhos se traçam ao entrar
+ * na tela. A classe .is-drawn é aplicada por IntersectionObserver — animar no
+ * mount não adiantaria, os cards estão abaixo da dobra. */
+.draw {
+  stroke-dasharray: var(--len, 1200);
+  stroke-dashoffset: var(--len, 1200);
+}
+.is-drawn .draw {
+  animation: traco 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+.is-drawn .draw-2 { animation-delay: 0.3s; }
+.is-drawn .draw-3 { animation-delay: 0.5s; }
+
+@keyframes traco {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Cotas e pontos entram depois que a linha termina */
+.fade-late { opacity: 0; }
+.is-drawn .fade-late { animation: surge 0.5s ease-out 1s forwards; }
+@keyframes surge {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .draw, .is-drawn .draw { animation: none; stroke-dashoffset: 0; }
+  .fade-late, .is-drawn .fade-late { animation: none; opacity: 1; }
+}
+
+/* O formulário de contato é operado por teclado com frequência */
+:where(a, button, input, textarea):focus-visible {
+  outline: 2px solid var(--growth);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: var(--line-bright); border-radius: 3px; }

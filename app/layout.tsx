@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+
+// Mono para cotas de desenho e rótulos de métrica — o vocabulário que a prancha
+// de armadura e o painel de anúncios têm em comum.
+const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', weight: ['400', '500'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.iacortextech.com.br'),
@@ -32,7 +36,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-br">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.variable} ${mono.variable} ${inter.className}`}>{children}</body>
     </html>
   );
 }
