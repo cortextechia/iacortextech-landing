@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" fill="none">
+  <!-- connections -->
+  <g stroke="#1e3a8a" stroke-width="1.6" stroke-linecap="round" opacity="0.85">
+    <line x1="10" y1="10" x2="22" y2="18"/>
+    <line x1="6"  y1="30" x2="10" y2="10"/>
+    <line x1="6"  y1="30" x2="22" y2="18"/>
+    <line x1="6"  y1="30" x2="22" y2="42"/>
+    <line x1="10" y1="50" x2="6"  y2="30"/>
+    <line x1="10" y1="50" x2="22" y2="42"/>
+    <line x1="22" y1="18" x2="22" y2="42"/>
+  </g>
+  <!-- arrow upper -->
+  <line x1="22" y1="21" x2="40" y2="21" stroke="#1e3a8a" stroke-width="2.2" stroke-linecap="round"/>
+  <polyline points="34,15 42,21 34,27" fill="none" stroke="#1e3a8a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- arrow lower -->
+  <line x1="22" y1="39" x2="40" y2="39" stroke="#1e3a8a" stroke-width="2.2" stroke-linecap="round"/>
+  <polyline points="34,33 42,39 34,45" fill="none" stroke="#1e3a8a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- nodes -->
+  <circle cx="10" cy="10" r="3" fill="#1e3a8a"/>
+  <circle cx="6"  cy="30" r="3" fill="#1e3a8a"/>
+  <circle cx="10" cy="50" r="3" fill="#1e3a8a"/>
+  <circle cx="22" cy="18" r="3" fill="#1e3a8a"/>
+  <circle cx="22" cy="42" r="3" fill="#1e3a8a"/>
+  <!-- text -->
+  <text x="56" y="34" font-family="'Segoe UI', 'Arial', sans-serif" font-weight="700" font-size="22" fill="#1e3a8a">Córtex</text>
+  <text x="57" y="50" font-family="'Segoe UI', 'Arial', sans-serif" font-weight="400" font-size="14" fill="#64748b" letter-spacing="1">Growth</text>
+</svg>
