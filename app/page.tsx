@@ -146,8 +146,8 @@ export default function IACortexTechLanding() {
 
             <div className="grid grid-cols-2 gap-4">
               {[
-                { icon: '🎯', title: 'Missão', text: 'Democratizar o acesso a analytics avançado com IA.' },
-                { icon: '🔭', title: 'Visão', text: 'Ser a plataforma de dados mais inteligente do mercado.' },
+                { icon: '🎯', title: 'Missão', text: 'Tirar a operação da planilha — do marketing à produção.' },
+                { icon: '🔭', title: 'Visão', text: 'Ser o sistema em que a PME brasileira confia para decidir.' },
                 { icon: '⚡', title: 'Velocidade', text: 'Produtos construídos para escalar desde o primeiro dia.' },
                 { icon: '🔒', title: 'Segurança', text: 'Dados protegidos com criptografia AES-256-GCM.' },
               ].map((item) => (
@@ -190,12 +190,14 @@ export default function IACortexTechLanding() {
               </div>
               <h3 className="text-xl font-bold mb-2" style={{ color: '#f1f5f9' }}>Cortex Growth</h3>
               <p className="text-sm leading-relaxed mb-6" style={{ color: '#94a3b8' }}>
-                Dashboard inteligente que centraliza Meta Ads, Google Ads e Kommo CRM.
-                Utiliza a Google Ads API para leitura de métricas de campanhas (impressões, cliques, custo e conversões)
-                e gera relatórios automáticos com 4 agentes de IA para PMEs brasileiras.
+                Une o investimento em anúncios ao que ele gerou de venda. Puxa as métricas de
+                Meta Ads e Google Ads pelas APIs oficiais (impressões, cliques, custo e conversões),
+                acompanha cada lead até o fechamento no CRM e mostra o ROAS real por campanha.
+                Traz CRM próprio com WhatsApp do vendedor, diagnóstico de SEO e agentes de IA que
+                apontam onde o dinheiro está sendo perdido — feito para PMEs brasileiras.
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
-                {['Meta Ads', 'Google Ads API', 'Kommo CRM', 'AI Insights', 'ROAS'].map((tag) => (
+                {['Meta Ads', 'Google Ads API', 'CRM + WhatsApp', 'SEO / AIO', 'Agentes de IA', 'ROAS real'].map((tag) => (
                   <span key={tag} className="px-2 py-1 rounded-md text-xs"
                     style={{ background: 'rgba(59,130,246,0.1)', color: '#93c5fd', border: '1px solid rgba(59,130,246,0.2)' }}>
                     {tag}
@@ -214,31 +216,44 @@ export default function IACortexTechLanding() {
               </a>
             </div>
 
-            {/* Produto em breve */}
+            {/* Cortex Steel — ERP para armaduras de aço, em desenvolvimento */}
             <div className="relative p-8 rounded-2xl overflow-hidden"
-              style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
+              style={{ background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.25)' }}>
               <div className="absolute top-4 right-4">
                 <span className="px-2 py-1 rounded-full text-xs font-medium" style={{ background: 'rgba(251,191,36,0.1)', color: '#fbbf24', border: '1px solid rgba(251,191,36,0.3)' }}>
-                  Em breve
+                  Em desenvolvimento
                 </span>
               </div>
               <div className="h-12 w-12 rounded-xl flex items-center justify-center mb-5"
-                style={{ background: 'rgba(255,255,255,0.05)' }}>
-                <svg className="h-6 w-6" style={{ color: '#475569' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+                style={{ background: 'rgba(245,158,11,0.15)' }}>
+                <svg className="h-6 w-6" style={{ color: '#f59e0b' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437L5.909 7.5" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-2" style={{ color: '#475569' }}>Cortex Automations</h3>
-              <p className="text-sm leading-relaxed mb-6" style={{ color: '#475569' }}>
-                Plataforma de automação de marketing com IA generativa: criação de copies, briefings
-                de campanhas e inteligência competitiva para agências e times de marketing.
+              <h3 className="text-xl font-bold mb-2" style={{ color: '#f1f5f9' }}>Cortex Steel</h3>
+              <p className="text-sm leading-relaxed mb-6" style={{ color: '#94a3b8' }}>
+                ERP para empresas de corte, dobra e montagem de armaduras de aço. Substitui a
+                planilha e o WhatsApp entre Comercial, Técnico, Produção e Expedição: orçamento,
+                projeto de armadura, ordem de produção e etiquetas de peça num único fluxo, com
+                rastreio do que foi produzido e do que ainda falta.
               </p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {['Orçamento', 'Projeto de armadura', 'Ordem de produção', 'PPCP', 'NBR 7480'].map((tag) => (
+                  <span key={tag} className="px-2 py-1 rounded-md text-xs"
+                    style={{ background: 'rgba(245,158,11,0.08)', color: '#fcd34d', border: '1px solid rgba(245,158,11,0.2)' }}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
               <a href="#contato"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all"
-                style={{ border: '1px solid rgba(255,255,255,0.08)', color: '#475569' }}
-                onMouseEnter={e => { e.currentTarget.style.color = '#94a3b8'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; }}
-                onMouseLeave={e => { e.currentTarget.style.color = '#475569'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; }}>
-                Ser notificado
+                style={{ border: '1px solid rgba(245,158,11,0.3)', color: '#fbbf24' }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(245,158,11,0.1)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}>
+                Falar sobre o Steel
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
               </a>
             </div>
           </div>
