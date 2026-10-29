@@ -1,87 +1,200 @@
 @import "tailwindcss";
 
-/* Sistema da Cortex Tech.
+/* Design system Cromalex (artifact 814W9V6qNf2EMsuVbrMEZm): grafite + cromo.
  *
- * Duas marcas de produto convivem na mesma página e vêm de mundos opostos:
- * Growth é tela e número (azul), Steel é chão de fábrica e desenho técnico
- * (âmbar). O fundo e as linhas são neutros de propósito — quem carrega
- * identidade são os produtos, não o cenário. */
+ * O limão do sistema ficou com o Growth. Aqui é a empresa: a marca-mãe não tem
+ * cor própria, é só grafite e cromo. Cor aparece só nos produtos — Growth em
+ * limão, Steel em laranja-brasa, Line em azul aço — e sempre como FUNDO com texto escuro; como
+ * traço/texto usa a versão `-ink`, que no claro escurece para passar contraste.
+ *
+ * Escuro é o tema da marca. O script do layout grava data-theme no <html>
+ * antes da pintura (escolha salva, senão a do aparelho). */
 :root {
-  --bg-base:        #05080f;
-  --bg-surface:     #0a1120;
-  --bg-sunken:      #03060c;
+  --bg:             #0c0d0f;
+  --surface:        #131417;
+  --raised-top:     #1a1c20;
+  --raised-bottom:  #121316;
+  --line:           #1f2226;
+  --border:         #23262b;
+  --border-strong:  #2c3036;
+  --border-control: #3a3f46;
 
-  --line:           #172033;
-  --line-bright:    #243350;
+  --ink:            #eceef1;
+  --ink-2:          #c4c8ce;
+  --ink-3:          #a6abb3;
+  --ink-dim:        #5d636b;
+  --danger:         #ff8a7a;
 
-  --growth:         #3b82f6;
-  --steel:          #f59e0b;
+  --glow:           #1c1e23;
+  --nav:            rgba(12, 13, 15, 0.86);
+  --shadow-raised:  0 40px 90px rgba(0, 0, 0, 0.55);
+  --spot:           rgba(255, 255, 255, 0.06);
 
-  --text-primary:   #e6edf9;
-  --text-secondary: #8595ae;
-  --text-muted:     #4a5a75;
+  --chrome-1: #ffffff; --chrome-2: #9aa0a8; --chrome-3: #5d636b; --chrome-4: #dfe2e6;
+  --cromo: linear-gradient(100deg, #aeb3ba 0%, #ffffff 22%, #7d838c 40%, #e9ebee 60%, #aeb3ba 100%);
+
+  /* Produtos */
+  --growth:         #c8ff3e;
+  --growth-ink:     #c8ff3e;
+  --growth-tint:    #24301a;
+  --growth-tint-ink:#d8f59a;
+  --growth-spot:    rgba(200, 255, 62, 0.10);
+  --steel:          #ff7a2e;
+  --steel-ink:      #ff7a2e;
+  --steel-tint:     #33200f;
+  --steel-tint-ink: #ffc9a3;
+  --steel-spot:     rgba(255, 122, 46, 0.11);
+  /* Line: o azul aço que o próprio sistema já usa (repo galpao-premoldados, Etapa 22) */
+  --line-brand:         #5b9bd5;
+  --line-brand-ink:     #8db9e3;
+  --line-brand-tint:    #16283a;
+  --line-brand-tint-ink:#b9d4ee;
+  --line-brand-spot:    rgba(91, 155, 213, 0.12);
+  --on-produto:     #0c0d0f;
 }
+
+:root[data-theme="light"] {
+  --bg:             #f4f5f7;
+  --surface:        #ffffff;
+  --raised-top:     #ffffff;
+  --raised-bottom:  #ffffff;
+  --line:           #e2e4e8;
+  --border:         #e2e4e8;
+  --border-strong:  #d3d6db;
+  --border-control: #b9bdc4;
+
+  --ink:            #0c0d0f;
+  --ink-2:          #2f3338;
+  --ink-3:          #52575f;
+  --ink-dim:        #9aa0a8;
+  --danger:         #b42318;
+
+  --glow:           #e3e5e9;
+  --nav:            rgba(244, 245, 247, 0.86);
+  --shadow-raised:  0 40px 90px rgba(12, 13, 15, 0.12);
+  --spot:           rgba(12, 13, 15, 0.04);
+
+  --chrome-1: #5d636b; --chrome-2: #1b1d21; --chrome-3: #7d838c; --chrome-4: #2a2d32;
+  --cromo: linear-gradient(100deg, #3b3f46 0%, #0c0d0f 22%, #6b7079 40%, #1b1d21 60%, #3b3f46 100%);
+
+  /* limão e laranja como traço não passam no claro: oliva e ferrugem */
+  --growth-ink:     #4a6600;
+  --growth-tint:    #e6f6c2;
+  --growth-tint-ink:#3d5400;
+  --growth-spot:    rgba(120, 170, 0, 0.13);
+  --steel-ink:      #b0440b;
+  --steel-tint:     #ffe8d8;
+  --steel-tint-ink: #8a3305;
+  --steel-spot:     rgba(200, 80, 10, 0.10);
+  --line-brand-ink:     #24629a;
+  --line-brand-tint:    #e3eef8;
+  --line-brand-tint-ink:#1d527f;
+  --line-brand-spot:    rgba(47, 120, 183, 0.10);
+}
+
+html { color-scheme: dark; }
+html[data-theme="light"] { color-scheme: light; }
 
 body {
-  background: var(--bg-base);
-  color: var(--text-primary);
+  background: var(--bg);
+  color: var(--ink);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Grade de prancha. Aparece só onde o assunto é técnico — fundo do herói e
- * interior dos cards de produto — e nunca compete com o texto. */
-.blueprint {
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 44px 44px;
-}
+h1, h2, h3 { text-wrap: balance; }
 
-/* Cotas e rótulos de dado usam mono: é o vernáculo que o desenho de armadura
- * e o painel de métricas têm em comum. */
+.display { font-family: var(--font-display), system-ui, sans-serif; font-weight: 800; }
 .mono {
   font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
 
-/* Único momento coreografado da página: os dois desenhos se traçam ao entrar
- * na tela. A classe .is-drawn é aplicada por IntersectionObserver — animar no
- * mount não adiantaria, os cards estão abaixo da dobra. */
-.draw {
-  stroke-dasharray: var(--len, 1200);
-  stroke-dashoffset: var(--len, 1200);
+/* Título cromado: corre devagar. Só no hero, nos títulos-chave e nos números. */
+.cromo {
+  background: var(--cromo); background-size: 220% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: brilho 7s ease-in-out infinite;
 }
-.is-drawn .draw {
-  animation: traco 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+@keyframes brilho { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+/* Botão principal da marca-mãe: cromo sólido (tinta sobre fundo), não limão. */
+.btn-cromo {
+  background: var(--ink); color: var(--bg);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
+.btn-cromo:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); }
+.btn-cromo:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn-linha { border: 1px solid var(--border-control); color: var(--ink); transition: background 0.2s ease; }
+.btn-linha:hover { background: var(--surface); }
+/* Botão na cor do produto: limão/laranja de fundo, texto escuro; o contorno segura o limão no claro. */
+.btn-produto {
+  color: var(--on-produto);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  transition: transform 0.15s ease, filter 0.2s ease;
+}
+.btn-produto:hover { transform: translateY(-1px); filter: brightness(1.04); }
+
+.link { color: var(--ink-2); transition: color 0.2s ease; }
+.link:hover { color: var(--ink); }
+
+/* Tema: os dois ícones existem; o CSS mostra o certo, sem estado no React. */
+:root[data-theme="light"] .ico-sol, :root:not([data-theme="light"]) .ico-lua { display: none; }
+
+/* Entradas ao rolar. A classe só liga com JS, então sem JS tudo aparece. */
+[data-anim="on"] .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+[data-anim="on"] .reveal.in { opacity: 1; transform: none; }
+
+.tilt { transition: transform 0.25s ease-out; will-change: transform; }
+
+/* Brilho que segue o mouse (o JS grava --mx/--my). Cada card pode trocar --spot pela cor do produto. */
+.spot { position: relative; isolation: isolate; transition: transform 0.25s ease-out; }
+.spot::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: -1;
+  background: radial-gradient(340px circle at var(--mx, 50%) var(--my, 50%), var(--spot), transparent 70%);
+  opacity: 0; transition: opacity 0.3s ease;
+}
+.spot:hover::before { opacity: 1; }
+
+/* Desenho dos produtos: traça quando a seção entra na tela (.is-drawn via IntersectionObserver). */
+.draw { stroke-dasharray: var(--len, 1200); stroke-dashoffset: var(--len, 1200); }
+.is-drawn .draw { animation: traco 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards; }
 .is-drawn .draw-2 { animation-delay: 0.3s; }
-.is-drawn .draw-3 { animation-delay: 0.5s; }
-
-@keyframes traco {
-  to { stroke-dashoffset: 0; }
-}
-
-/* Cotas e pontos entram depois que a linha termina */
+@keyframes traco { to { stroke-dashoffset: 0; } }
 .fade-late { opacity: 0; }
 .is-drawn .fade-late { animation: surge 0.5s ease-out 1s forwards; }
-@keyframes surge {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
+@keyframes surge { from { opacity: 0; } to { opacity: 1; } }
+
+.barra { width: var(--w); }
+[data-anim="on"] .reveal .barra { width: 0; transition: width 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s; }
+[data-anim="on"] .reveal.in .barra { width: var(--w); }
+
+/* Troca de aba e resposta da dúvida entram suaves. */
+.pop { animation: pop 0.45s ease both; }
+@keyframes pop { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: none; } }
+
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:hover { color: var(--ink-2); }
+.faq-ico { transition: transform 0.25s ease; }
+.faq[open] .faq-ico { transform: rotate(45deg); }
 
 @media (prefers-reduced-motion: reduce) {
+  .cromo { animation: none; }
+  .pop { animation: none; }
+  .faq-ico { transition: none; }
+  [data-anim="on"] .reveal { opacity: 1; transform: none; transition: none; }
+  .tilt, .spot, .btn-cromo, .btn-produto { transition: none; }
   .draw, .is-drawn .draw { animation: none; stroke-dashoffset: 0; }
   .fade-late, .is-drawn .fade-late { animation: none; opacity: 1; }
 }
 
-/* O formulário de contato é operado por teclado com frequência */
 :where(a, button, input, textarea):focus-visible {
-  outline: 2px solid var(--growth);
+  outline: 2px solid var(--ink);
   outline-offset: 2px;
-  border-radius: 4px;
 }
 
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--line-bright); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }

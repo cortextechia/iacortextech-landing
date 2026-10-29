@@ -39,14 +39,14 @@ export async function POST(req: NextRequest) {
 
   try {
     await transporter.sendMail({
-      from: `"IA Cortex Tech Site" <${process.env.ZOHO_USER}>`,
+      from: `"Cromalex Site" <${process.env.ZOHO_USER}>`,
       to: 'api@iacortextech.com.br',
       replyTo: email,
       subject: `Contato via iacortextech.com.br — ${name.replace(/[\r\n]/g, ' ')}`,
       text: `Nome: ${name}\nEmail: ${email}\n\n${message}`,
       html: `
         <div style="font-family:sans-serif;max-width:600px">
-          <h2 style="color:#3b82f6">Novo contato via iacortextech.com.br</h2>
+          <h2 style="color:#0c0d0f">Novo contato via iacortextech.com.br</h2>
           <p><strong>Nome:</strong> ${escapeHtml(name)}</p>
           <p><strong>Email:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p>
           <hr/>
